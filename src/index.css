@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anta&display=swap");
+
+body {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components {
+  .Label {
+    @apply font-serif text-xl;
+  }
+
+  .Center {
+    @apply flex justify-center items-center h-screen;
+  }
+}
