@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import Form from "../Component/Form";
 import Logo from "../assets/images/favicon.ico";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { registerUser } from "../Features/User/user";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formdata, Setformdata] = useState({
     name: "",
     email: "",
     password: "",
   });
   const dispatch = useDispatch();
-  const { Loading, user } = useSelector((store) => store.user);
+  const { Loading } = useSelector((store) => store.user);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -31,7 +32,13 @@ const Register = () => {
       return;
     }
 
-    dispatch(registerUser({ name, email, password }));
+    dispatch(registerUser({ name, email, password })).then((result) => {
+      console.log("Registration result:", result);
+      if (!result.error) {
+        // If registration successful, navigate to login
+        navigate("/login");
+      }
+    });
   };
   return (
     <div className=" flex justify-center items-center h-screen ">

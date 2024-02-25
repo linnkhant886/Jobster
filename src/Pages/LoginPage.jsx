@@ -33,8 +33,8 @@ const LoginPage = () => {
   useEffect(() => {
     if (user) {
       setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
+        navigate("/");
+      }, 1000);
     }
   }, [user]);
   return (

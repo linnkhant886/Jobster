@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
-    <main className=" p-8  ">
+    <main className=" p-8 container mx-auto  ">
       <nav className=" flex  gap-4 md:mb-40 lg:mb-20  mb-40 ">
         <img src={Logo} alt="" />
         <h1 className=" text-blue-600 text-5xl font-serif">Jobster</h1>

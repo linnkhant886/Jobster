@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import customFetch from "../../Utils/axios";
 import {
   GetUserFromLocalStorage,
+  RemoveFromLocalStorage,
   addToLocalStorage,
 } from "../../Utils/localStorage";
 
@@ -37,18 +38,21 @@ const initialState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
+  reducers: {
+    LogoutUser: (state) => {
+      state.user = null;
+      RemoveFromLocalStorage();
+      toast.success("Logout Successful");
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
         state.Loading = true;
       })
-      .addCase(registerUser.fulfilled, (state, action) => {
-        console.log(action);
-        const { user } = action.payload;
+      .addCase(registerUser.fulfilled, (state) => {
         state.Loading = false;
-        state.user = user;
-        addToLocalStorage(user);
-        toast.success(`Hello Welcome ${user.name}`);
+        toast.success("Register Success");
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.Loading = false;
@@ -58,7 +62,6 @@ const userSlice = createSlice({
         state.Loading = true;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        console.log(action);
         const { user } = action.payload;
         state.Loading = false;
         state.user = user;
@@ -72,5 +75,5 @@ const userSlice = createSlice({
       });
   },
 });
-
+export const { LogoutUser } = userSlice.actions;
 export default userSlice.reducer;
