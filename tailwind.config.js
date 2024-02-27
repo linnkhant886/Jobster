@@ -7,6 +7,8 @@ export default {
         sans: ["Kanit", "sans-serif"],
         serif: ["Anta", "serif"],
       },
+
+      
     },
   },
 

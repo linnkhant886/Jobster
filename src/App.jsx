@@ -31,7 +31,7 @@ const App = () => {
         >
           <Route index element={<Allstat></Allstat>}></Route>
           <Route path="/add-job" element={<AddJob></AddJob>}></Route>
-          <Route path="/update-job" element={<AllJob></AllJob>}></Route>
+          <Route path="/all-job" element={<AllJob></AllJob>}></Route>
           <Route path="/profile" element={<Profile></Profile>}></Route>
         </Route>
 

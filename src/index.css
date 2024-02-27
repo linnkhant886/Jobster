@@ -9,12 +9,9 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer components {
   .Label {
     @apply font-serif text-xl;
-  }
-
-  .Center {
-    @apply flex justify-center items-center h-screen;
   }
 }
