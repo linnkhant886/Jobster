@@ -26,7 +26,7 @@ const SidbarMenu = ({ open }) => {
         </NavLink>
 
         <NavLink
-          to="/add-job"
+          to="/all-job"
           className={({ isActive }) =>
             isActive ? " text-blue-400" : undefined
           }
@@ -41,7 +41,7 @@ const SidbarMenu = ({ open }) => {
           </li>{" "}
         </NavLink>
         <NavLink
-          to="/all-job"
+          to="/add-job"
           className={({ isActive }) =>
             isActive ? " text-blue-400" : undefined
           }
