@@ -1,46 +1,31 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import customFetch from "../../Utils/axios";
 
-// const NormalState = {
-//   position: "",
-//   company: "",
-//   jobLocation: "",
-//   status: "pending",
-//   jobTypes: "full-time",
-// };
+import { CreateJobThunk, DeleteJobThunk, EditJobThunk } from "./jobThunk";
 
-export const CreateJob = createAsyncThunk(
-  "job/CreateJob",
-  async (job, thunkAPI) => {
-    try {
-      const resp = await customFetch.post("/jobs", job, {
-        headers: {
-          Authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
-        },
-      });
-      
+export const CreateJob = createAsyncThunk("job/CreateJob", CreateJobThunk);
 
-      // console.log(resp);
-      return resp.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.msg);
-    }
-  }
-);
+export const EditingJob = createAsyncThunk("job/EditingJob", EditJobThunk);
+
+export const deletejob = createAsyncThunk("alljob/deletejob", DeleteJobThunk);
 
 const initialState = {
   Loading: false,
-  isEditing: false,
-
-  // job: null,
-  editJobId: "",
+  isJobUpdated: false,
 };
 
 const JobSlice = createSlice({
   name: "job",
   initialState,
-  
+  reducers: {
+    editjob: (state, { payload }) => {
+      // console.log(payload);
+      return { ...state, ...payload };
+    },
+    resetIsJobUpdated: (state) => {
+      state.isJobUpdated = false;
+    },
+  },
 
   extraReducers: (builder) => {
     builder
@@ -56,7 +41,30 @@ const JobSlice = createSlice({
       .addCase(CreateJob.rejected, (state, { payload }) => {
         state.Loading = false;
         toast.error(payload);
+      })
+
+      .addCase(EditingJob.pending, (state) => {
+        state.Loading = true;
+      })
+      .addCase(EditingJob.fulfilled, (state) => {
+        state.Loading = false;
+        toast.success("Job Updated");
+        state.isJobUpdated = true;
+      })
+      .addCase(EditingJob.rejected, (state, { payload }) => {
+        state.Loading = false;
+        toast.error(payload);
+        console.log(payload);
+      })
+      .addCase(deletejob.fulfilled, (state, { payload }) => {
+        toast.success(payload);
+      })
+
+      .addCase(deletejob.rejected, (state, { payload }) => {
+        state.Loading = false;
+        toast.error(payload);
       });
   },
 });
+export const { editjob, resetIsJobUpdated } = JobSlice.actions;
 export default JobSlice.reducer;

@@ -14,6 +14,7 @@ import {
   Allstat,
   AllJob,
   ShareLayout,
+  Editjob
 } from "./Pages/DashboardPage";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/add-job" element={<AddJob></AddJob>}></Route>
           <Route path="/all-job" element={<AllJob></AllJob>}></Route>
           <Route path="/profile" element={<Profile></Profile>}></Route>
+          <Route path="/edit-job" element={<Editjob></Editjob>}></Route>
         </Route>
 
         <Route path="/landing" element={<LandingPage></LandingPage>}></Route>

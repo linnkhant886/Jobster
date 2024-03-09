@@ -3,7 +3,8 @@ import React from "react";
 import { IoLocationSharp } from "react-icons/io5";
 import { MdWork, MdDateRange } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { deletejob } from "../Features/Alljob/Alljob";
+import { Link } from "react-router-dom";
+import { editjob, deletejob } from "../Features/Job/Job";
 
 const SingleJob = (job) => {
   const { _id, company, jobLocation, jobType, position, status, createdAt } =
@@ -73,12 +74,26 @@ const SingleJob = (job) => {
           </div>
         </div>
         <div className="flex items-center px-4 py-3  border-gray-200">
-          <button
-            type="button"
-            className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-teal-500 rounded-md hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
-          >
-            Edit
-          </button>
+          <Link to="/edit-job">
+            <button
+              onClick={() =>
+                dispatch(
+                  editjob({
+                    _id,
+                    company,
+                    jobLocation,
+                    jobType,
+                    position,
+                    status,
+                  })
+                )
+              }
+              type="button"
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-teal-500 rounded-md hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
+            >
+              Edit
+            </button>
+          </Link>
           <button
             onClick={() => dispatch(deletejob(_id))}
             type="button"

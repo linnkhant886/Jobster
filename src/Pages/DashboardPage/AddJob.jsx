@@ -55,8 +55,8 @@ const AddJob = () => {
     SetJob((pre) => ({ ...pre, [name]: value }));
   };
   return (
-    <div className="  p-10 shadow-2xl  w-full   ">
-      <div className="   bg-white py-20 px-24 rounded-lg ">
+    <div className="  p-10   w-full   ">
+      <div className="   bg-white py-10 px-10  shadow-md rounded-lg ">
         <h1 className="text-3xl  font-mono text-center  mb-10">
           {isEditing ? "Edit Job" : "Add Job"}
         </h1>
@@ -162,7 +162,7 @@ const AddJob = () => {
               <button
                 onClick={handleClear}
                 disabled={Loading}
-                className=" bg-orange-400 w-44 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className=" bg-orange-400 w-full hover:bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 {Loading ? "Loading..." : "Clear"}
               </button>
@@ -170,7 +170,7 @@ const AddJob = () => {
               <button
                 disabled={Loading}
                 onClick={handleSubmit}
-                className="bg-blue-500  w-44 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-blue-500  w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 {Loading ? "Loading..." : "Submit"}
               </button>

@@ -73,12 +73,20 @@ const LoginPage = () => {
               <span className=" underline text-blue-500">Register</span>
             </Link>
           </p>
-          <div className="   text-center  ">
+          <div className=" flex flex-col  gap-5 ">
             <button
               disabled={Loading}
-              className="bg-blue-500  w-44 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-blue-500  w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               {Loading ? "Loading..." : "Login"}
+            </button>
+
+            <button
+            onClick={()=>dispatch(loginUser({email: "testUser@test.com",password:"secret"}))}
+              disabled={Loading}
+              className="bg-rose-500  w-full hover:bg-rose-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              {Loading ? "Loading..." : "Demo App"}
             </button>
           </div>
         </form>

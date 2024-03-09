@@ -7,7 +7,7 @@ const Form = ({ type, name, label, placeholder = "", value, onChange }) => {
         {label}
       </label>
       <input
-        className=" shadow w-full border py-3 font-serif px-2  rounded-lg  focus:outline-none focus:shadow-outline"
+        className=" shadow w-full border py-2 font-serif px-2  rounded-lg  focus:outline-none focus:shadow-outline"
         type={type}
         name={name}
         id={name}

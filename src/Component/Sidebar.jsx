@@ -16,7 +16,7 @@ const Sidebar = () => {
   };
   return (
     <div
-      className={`h-screen relative p-5 cursor-pointer duration-300 transition-all bg-slate-50 ${
+      className={`h-screen   sticky top-0  p-5 cursor-pointer duration-300 transition-all bg-slate-50 ${
         open ? "w-72 " : " w-20"
       }`}
     >

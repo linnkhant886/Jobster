@@ -1,17 +1,25 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAlljobs } from "../Features/Alljob/Alljob";
+import { changePage, getAlljobs } from "../Features/Alljob/Alljob";
 import LoadingComponent from "./LoadingComponent";
-import SingleJob from "./SingleJob";
+import { Jobpaginator, SingleJob } from "./index";
 
-const JobContainer = () => {
+const JobContainer = ({ Searchjob }) => {
   const dispatch = useDispatch();
-  const { jobs, Loading } = useSelector((store) => store.alljob);
+  const { jobs, Loading, totalJobs, numOfPages, page } = useSelector(
+    (store) => store.alljob
+  );
   //   console.log(useSelector((store) => store.alljob));
 
   useEffect(() => {
-    dispatch(getAlljobs());
-  }, []);
+    dispatch(getAlljobs(Searchjob));
+  }, [Searchjob, dispatch, page]);
+
+  useEffect(() => {
+    // Reset page when numOfPages changes
+    dispatch(changePage(1));
+  }, [numOfPages, dispatch]);
+
   if (Loading) {
     return <LoadingComponent> </LoadingComponent>;
   }
@@ -21,7 +29,9 @@ const JobContainer = () => {
   }
   return (
     <div className="  w-full  ">
-      <h1>{jobs.length} jobs found!</h1>
+      <h1 className=" py-4  text-xl">
+        {totalJobs} job{jobs.length > 1 && "s"} found!
+      </h1>
 
       <div className=" grid lg:grid-cols-2 gap-3">
         {jobs.map((job) => {
@@ -32,6 +42,8 @@ const JobContainer = () => {
           );
         })}
       </div>
+
+      <div>{numOfPages > 1 && <Jobpaginator></Jobpaginator>}</div>
     </div>
   );
 };

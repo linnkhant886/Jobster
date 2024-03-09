@@ -3,4 +3,5 @@ import Profile from "./Profile";
 import ShareLayout from "./ShareLayout";
 import AllJob from "./AllJob";
 import Allstat from "./Allstat";
-export { AddJob, Profile, Allstat, AllJob, ShareLayout };
+import Editjob from "./Editjob";
+export { AddJob, Profile, Allstat, AllJob, ShareLayout,Editjob };

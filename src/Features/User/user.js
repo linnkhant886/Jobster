@@ -39,7 +39,7 @@ export const UpdateUser = createAsyncThunk(
           Authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
       });
-      console.log(resp)
+      console.log(resp);
       return resp.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -56,10 +56,13 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    LogoutUser: (state) => {
+    LogoutUser: (state, action) => {
       state.user = null;
       RemoveFromLocalStorage();
-      toast.success("Logout Successful");
+      if (!action.payload) {
+        // Only show success message if logout is not due to unauthorized response
+        toast.success("Logout Successful");
+      }
     },
   },
   extraReducers: (builder) => {
