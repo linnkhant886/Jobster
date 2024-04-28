@@ -2,7 +2,7 @@ import axios from "axios";
 import { LogoutUser } from "../Features/User/user";
 
 const customFetch = axios.create({
-  baseURL: "https://jobify-prod.herokuapp.com/api/v1/toolkit",
+  baseURL: "https://redux-toolkit-jobster-api-server.onrender.com/api/v1",
 });
 
 export default customFetch;
